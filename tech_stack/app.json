@@ -1,5 +1,10 @@
 {
   "expo": {
-    "sdkVersion": "19.0.0"
+    "name": "tech_stack",
+    "description": "An empty new project",
+    "slug": "tech_stack",
+    "privacy": "public",
+    "sdkVersion": "19.0.0",
+    "version": "1.0.0"
   }
 }
