@@ -2,7 +2,7 @@ import React, { Component }  from 'react';
 import { Text } from 'react-native';
 import { connect } from 'react-redux';
 import { Card, CardSection, Input, Button, Spinner } from './common';
-import {emailChanged, passwordChanged, loginUser} from '../actions'
+import { emailChanged, passwordChanged, loginUser } from '../actions'
 
 class LoginForm extends Component {
 	onButtonPress() {
@@ -73,7 +73,7 @@ const styles = {
 	}
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
 	return {
 		email: state.auth.email,
 		password: state.auth.password,
@@ -81,6 +81,6 @@ const mapStateToProps = state => {
 		loading: state.auth.loading,
 		error: state.auth.error
 	}
-}
+};
 
 export default connect(mapStateToProps, { emailChanged, passwordChanged, loginUser })(LoginForm);
