@@ -3,7 +3,6 @@ import { ListView } from 'react-native';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import { Card, CardSection, Input, Button, Spinner } from './common';
-import { Actions } from 'react-native-router-flux';
 import { employeesFetch } from '../actions'
 import ListItem from './ListItem';
 
@@ -28,10 +27,6 @@ class EmployeeList extends Component {
 		});
 
 		this.dataSource = ds.cloneWithRows(employees);
-	}
-
-	editEmployee() {
-		Actions.employee();
 	}
 
 	renderRow(employee) {

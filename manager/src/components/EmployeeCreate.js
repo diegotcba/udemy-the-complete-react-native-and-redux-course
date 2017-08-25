@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Picker, Text } from 'react-native';
+import { Text } from 'react-native';
 import { connect } from 'react-redux';
-import { Card, CardSection, Input, Button, Spinner } from './common';
+import { Card, CardSection, Button, Spinner } from './common';
+import EmployeeForm from './EmployeeForm';
 import { employeeUpdate, employeeSave } from '../actions';
 
 class EmployeeCreate extends Component {
@@ -25,36 +26,10 @@ class EmployeeCreate extends Component {
 	}
 
 	render() {
+
 		return(
 			<Card>
-				<CardSection>
-					<Input 
-						label ="Name" 
-						placeholder ="John Doe" 
-						value = {this.props.name} 
-						onChangeText = {text => this.props.employeeUpdate({prop: 'name', value: text})} />
-				</CardSection>
-				<CardSection>
-					<Input label="Phone"
-					placeholder="223-23453" 
-					value = {this.props.phone}
-					onChangeText = {text => this.props.employeeUpdate({prop: 'phone', value: text})} />
-				</CardSection>
-
-				<CardSection styleHH={{ flexDirection: 'column'}}>
-					<Text style={styles.pickerTextStyle}>Shift</Text>
-					<Picker style={{ flex: 1 }}
-						selectedValue = { this.props.shift} 
-						onValueChange = {(itemValue, itemIndex) => this.props.employeeUpdate({prop: 'shift', value: itemValue})}>
-						<Picker.Item label="Monday" value="Monday" />
-						<Picker.Item label="Tuesday" value="Tuesday" />
-						<Picker.Item label="Wednesday" value="Wednesday" />
-						<Picker.Item label="Thursday" value="Thursday" />
-						<Picker.Item label="Friday" value="Friday" />
-						<Picker.Item label="Saturday" value="Saturday" />
-						<Picker.Item label="Sunday" value="Sunday" />
-					</Picker>	
-				</CardSection>
+				<EmployeeForm { ...this.props} />
 
 				<Text style={styles.errorTextStyle}>
 					{ this.props.error }
@@ -80,11 +55,6 @@ const mapStateToProps = (state) => {
 };
 
 const styles = {
-	pickerTextStyle: {
-		fontSize: 18,
-		paddingLeft: 20,
-		flex: 1
-	},
 	errorTextStyle: {
 		fontSize: 20,
 		alignSelf: 'center',

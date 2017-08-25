@@ -74,3 +74,39 @@ const employeesFetchFail = () => {
 		type: EMPLOYEES_FETCH_FAIL
 	});
 };
+
+export const employeeEdit = ({name, phone, shift, uid}) => {
+	const { currentUser } = firebase.auth();
+	return (dispatch) => {
+
+		firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
+			.set({ name, phone, shift })
+			.then(() => employeeEditSuccess(dispatch))
+			.catch(() => employeeEditFail(dispatch));
+	};
+};
+
+const employeeEditSuccess = (dispatch) => {
+	dispatch({type: EMPLOYEE_SAVE_SUCCESS});
+	console.log('save success');
+
+	Actions.employeeList({ type: 'reset'});
+};
+
+const employeeEditFail = (dispatch) => {
+	dispatch({type: ENPLOYEE_SAVE_FAIL});
+};
+
+export const employeeDelete = ({ uid }) => {
+	const { currentUser } = firebase.auth();
+
+	return () => {
+		firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
+			.remove()
+			.then(() => {
+				Actions.employeeList({type: 'reset'})
+			});
+
+
+	};
+};
